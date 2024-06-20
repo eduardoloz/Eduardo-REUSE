@@ -3,23 +3,26 @@ import java.util.ArrayList;
 
 public class RecompositionMap implements Runnable{
 
-    public static volatile boolean aThreadIsDone;
-
-    sychronized boolean isThreadDoneAndSetIF
+    public static boolean globalIsDone = false;
 
     @ Override
     public void run() {
         int x = (int) (Math.random() * 2000) + 1;
         try {
           Thread.sleep(x);  
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted by another thread");
             e.printStackTrace();
         }
-        if (aThreadIsDone) return;
+        if (isThreadDone()){
+            System.out.println("Program executed within: " + x + " ms.");
+        }
+    }
 
-        System.out.println("Thread " + "(dummy variable for #)" + "slept for " + x + " milliseconds");
-        aThreadIsDone = true;
-        // Instead of multiple giving a result. Have the threads report to a main thread (make sure only one thread wins)
+    synchronized public boolean isThreadDone() {
+        boolean isDone = globalIsDone;
+        globalIsDone = true;
+        return isDone;
     }
     
     public static void main(String[] args) {
@@ -28,21 +31,17 @@ public class RecompositionMap implements Runnable{
          * as Thread (null, target, gname), where gname is a newly generated name. 
          * Automatically generated names are of the form "Thread-"+n, where n is an integer.
          */
-        int n;
-
+        int n = 1;
         try {
             n = Integer.parseInt(args[0]);    
-        } catch (Exception e) {
-            return;
+        } catch (NumberFormatException e) {
+            System.out.println("String cannot be parsed to an integer");
         }
-
         /**
          * Notes
          * - Maybe create futures? (don't have a race condition)
          * - Look into alternatives for the for loop
-         * 
          */
-
         // Thread thread = new Thread(recompMap);
         ArrayList<Thread> threads = new ArrayList<>();
         for(int i = 0; i < n; i++){
@@ -61,8 +60,6 @@ public class RecompositionMap implements Runnable{
                 //e.printStackTrace();
             }
         }
-
         System.out.println("All threads have finished");
-        
     }
 }
