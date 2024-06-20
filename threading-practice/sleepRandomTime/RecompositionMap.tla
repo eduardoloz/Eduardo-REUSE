@@ -49,10 +49,3 @@ Safety ==
         i /= j => done[i] /\ done[j] => globalIsDone = TRUE
 
 ====
-
-\* Configuration file (RecompositionMap.cfg)
-\* CONSTANTS N = 5 \* Example number of threads
-\* INIT Init
-\* NEXT Next
-\* SPECIFICATION Spec
-
