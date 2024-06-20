@@ -1,0 +1,329 @@
+\documentclass[11pt]{article}
+
+% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\hypersetup{
+     colorlinks   = true,
+     citecolor    = gray
+}
+
+\usepackage{sectsty}
+\usepackage{lipsum}  % Generates filler text
+\usepackage[nottoc]{tocbibind} % Includes the bibliography in the table of contents
+
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+%for code
+\usepackage{listings}
+
+% % Bibliography setup
+% \usepackage[backend=biber, style=verbose-trad2]{biblatex}
+% \addbibresource{sample.bib} % Specify the bibliography file
+
+% Custom section formatting
+\sectionfont{\fontsize{12}{15}\selectfont}
+
+% Title content
+\title{CMU REUSE Notes}
+\author{Eduardo Lozano}
+\date{Summer 2024}
+
+\begin{document}
+\maketitle
+
+{ \hypersetup{hidelinks} \tableofcontents }
+
+\newpage
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+This document contains detailed notes for the 10-week research internship focused on coding and potential paper publication.
+
+\section{Week 1: Introduction to Project}
+This
+\section{Week 2: Literature Review}
+% Day 1
+\subsection{Day 1 - Learning decomp basics}
+
+\textbf{Tasks:}
+\begin{itemize}
+  \item Make another branch on the recomp-verify repo.
+  \item Make a new benchmark folder: toy\_mutex.
+  \item Make a new constants folder 2-1.
+  \item Create the .tla and .cfg files (see other benchmarks for examples).
+  \item Decompose the files by hand.
+  \item Check your work using recomp-verify.
+  \item Run: \texttt{python3 ......../..../recomp-verify.py ToyMutex.tla ToyMutex.cfg --naive}.
+\end{itemize}
+
+\subsubsection*{Summary:}
+Had trouble compiling because constants aren’t in config file. Java compiles faster.
+
+\subsubsection*{Potential Concerns:}
+Where to read papers / how to read effectively.
+
+% Day 2
+\subsection{Day 2 - Algorithm and Logic for State Graph Traversal}
+
+\subsubsection*{Tasks:}
+\begin{itemize}
+  \item Algorithm for checking a model (use BFS).
+  \item Read some articles and watch video given.
+\end{itemize}
+
+\subsubsection*{Summary:}
+Article [How Amazon Web Services Uses Formal Methods] takeaways:
+\begin{itemize}
+  \item Formal Methods scare new methods.
+  \item Formal Methods - mathematically rigorous techniques for the specification, analysis, and verification of software and hardware systems. 
+  \item Safety - what the system is allowed to do.
+  \item Liveness  - what the system is must eventually do.
+  \item Helps with communication and all engineers understanding a description of a design.
+  \item Formal Specification is not good for bugs and operator errors that cause a departure from the system’s logical intent.
+  \item Surprising “sustained emergent performance degradation.”
+  \item TLA+ can be used to specify an upper bound on response time, a real-world property.
+  \item However, real-world infrastructure does not support hard real-time scheduling guarantees.
+  \item TLA is more expressive than Alloy.
+\end{itemize}
+\subsection{Day 3 - Do comp-verify by hand for ToyMutex}
+
+\subsubsection*{Tasks:}
+\begin{itemize}
+  \item
+\end{itemize}
+
+\subsubsection*{Summary:}
+Article [How Amazon Web Services Uses Formal Methods] takeaways:
+\begin{itemize}
+  \item Formal Methods scare new methods.
+  \item Formal Methods - mathematically rigorous techniques for the specification, analysis, and verification of software and hardware systems. 
+  \item Safety - what the system is allowed to do.
+  \item Liveness  - what the system is must eventually do.
+  \item Helps with communication and all engineers understanding a description of a design.
+  \item Formal Specification is not good for bugs and operator errors that cause a departure from the system’s logical intent.
+  \item Surprising “sustained emergent performance degradation.”
+  \item TLA+ can be used to specify an upper bound on response time, a real-world property.
+  \item However, real-world infrastructure does not support hard real-time scheduling guarantees.
+  \item TLA is more expressive than Alloy.
+\end{itemize}
+
+\begin{algorithm}
+    \caption{An algorithm with caption}\label{alg:cap}
+    \begin{algorithmic}
+    \Require $n \geq 0$
+    \Ensure $y = x^n$
+    \State $y \gets 1$
+    \State $X \gets x$
+    \State $N \gets n$
+    \While{$N \neq 0$}
+    \If{$N$ is even}
+        \State $X \gets X \times X$
+        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+    \ElsIf{$N$ is odd}
+        \State $y \gets y \times X$
+        \State $N \gets N - 1$
+    \EndIf
+    \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
+% Day 4
+\subsection{Day 4 - CRA experimentation}
+\subsubsection*{Tasks:}
+\begin{itemize}
+  \item CRA by hand with new order: C1, C2, T2. Is this more efficient?
+  \item Check your work with recomp-verify, use —verbose flag to check number of states
+  \item 
+\end{itemize}
+
+\subsubsection*{Summary:}
+Trying to run different bits of code. What I got from doing CRA by hand and checking with the machine:
+\begin{itemize}
+  \item \emph{By hand:}
+  \begin{itemize}
+    \item From simply the $C_1 || C_2$, there ended up being no $\pi$ state meaning there could be short circuiting.
+    \item Since the parallel composition operator ($||$) is commutative, $C_1||C_2||T_2 \Leftrightarrow C_1||T_2||C_2$
+  \end{itemize}
+  \item \emph{\emph{recom-verify checking:}}
+  \begin{itemize}
+    \item There were 6 states modeled with $C_1||C_2||T_2$ and 8 states modeled with 
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Summary:}
+I was able to get \LaTeX working! I was able to set up the algorithm library as well
+which a little too long.
+
+% Day 5
+\subsection{Day 5 - Coding}
+\subsubsection*{Tasks:}
+\begin{itemize}
+  \item CRA by hand with new order: C1, C2, T2. Is this more efficient?
+  \item Check your work with recomp-verify, use —verbose flag to check number of states
+  \item 
+\end{itemize}
+
+\subsubsection*{Summary:}
+Trying to run different bits of code. What I got from doing CRA by hand and checking with the machine:
+\begin{itemize}
+  \item \emph{By hand:}
+  \begin{itemize}
+    \item From simply the $C_1 || C_2$, there ended up being no $\pi$ state meaning there could be short circuiting.
+    \item Since the parallel composition operator ($||$) is commutative, $C_1||C_2||T_2 \Leftrightarrow C_1||T_2||C_2$
+  \end{itemize}
+  \item \emph{\emph{recom-verify checking:}}
+  \begin{itemize}
+    \item There were 6 states modeled with $C_1||C_2||T_2$ and 8 states modeled with 
+  \end{itemize}
+\end{itemize}
+
+\subsubsection*{Summary:}
+I was able to get \LaTeX working! I was able to set up the algorithm library as well
+which a little too long.
+
+
+
+\section{Week 3: Initial Coding}
+\subsection{Day 1 - Eduardo House Keeping}
+\subsection*{Solutions to LaTeX dependencies}
+\begin{lstlisting}[language=bash]
+  sudo tlmgr install [package name]
+\end{lstlisting}
+
+\subsection{Day 2 - Learning decomp basics}
+\subsection*{Concerns}
+\begin{itemize}
+  \item Shared import problems of both Will and Eduardo
+  \begin{itemize}
+    \item import util.ToolIO;
+    \item import tlc2.tool.distributed.fp.DistributedFPSet;
+    \item import tlc2.tool.distributed.TLCWorker;
+    \item import org.osgi.framework.Bundle;
+    \item import org.osgi.framework.BundleContext;
+    \item import org.osgi.framework.FrameworkUtil;
+    \item import org.osgi.service.packageadmin.PackageAdmin;
+  \end{itemize}
+  \item Eduardo specific issues
+  \begin{itemize}
+    \item import tlc2.IDistributedFPSet;\
+    \item import tlc2.ITLCWorker;\ (distributed.consumer)
+    \item import tlc2.IDistributedFPSet; (distributed.consumer)Z
+  \end{itemize}
+
+\end{itemize}
+
+\subsection*{Summary}
+Task for today was to try editing recomp-verify with custom.
+I am using the following constants:
+
+\begin{lstlisting}[]
+  Processes == {"p1","p2","p3","p4"}
+  Max == 3
+  \end{lstlisting}
+
+\begin{enumerate}
+  \item \emph{``control variable''} C1;C2;T2 $\rightarrow$ 13 states and $\sim$1.74 seconds
+  \item C1,C2,T2 $\rightarrow$ 20 states and 1.416/1.44 seconds
+  \item if I have C1, C2; T2 $\rightarrow$ 5 states and 1.45/1.5 seconds
+  \item if I have C1, T2; C2 $\rightarrow$ 46 states and 1.6 seconds
+  \item if I have C1; C2; T2 $\rightarrow$ 13 states and 1.58 seconds
+  \item if I have C1; T2; C2 $\rightarrow$ 20 states and 1.8 seconds
+
+\end{enumerate}
+
+\subsection{Day 3 - Meeting Eunsuk!}
+\subsubsection*{Stand up Meeting}
+\paragraph[short]{What I've worked on/working on}{
+  \begin{enumerate}
+    \item Learned TLA+ basics
+    \item Decomposed a few examples (TwoPhaseCommit, ToyMutex)
+    \item Learned how to use recomp-verify
+    \item Read up on Ian's paper (understand relatively well)
+  \end{enumerate}
+}
+\paragraph[short]{What I'll be working on}{
+  \begin{enumerate}
+    \item Modifying the recomp-verify code to specifically
+    the number of states each component works on
+    \item Actually being able to modify the code
+    \item Reviewing java stuffs
+  \end{enumerate}
+}
+\paragraph[short]{What's Blocking me}{
+  \begin{enumerate}
+    \item Java, Eclipse, and setting up jar files :(\
+    \item Actually being able to modify the code
+  \end{enumerate}
+}
+
+
+
+\section{Week 4: Advanced Coding Techniques}
+\lipsum[5]
+
+\section{Week 5: Data Analysis}
+
+\section{Week 6: Mid-Internship Review}
+
+
+\section{Week 7: Continued Research}
+
+
+\section{Week 8: Preparing Results}
+
+
+\section{Week 9: Discussion}
+
+
+\section{Week 10: }
+
+\section{REUSE seminars with Dr. Sunshine!}
+\subsection{Week 1}
+\subsection{Week 2 - Reading Research papers}
+\subsubsection*{Why read papers?}
+\begin{enumerate}
+  \item Get a breadth of the paper.
+  \begin{enumerate}
+    \item See solutions and problems of the field
+    \item Get an idea at high level from the Abstract and Introduction
+  \end{enumerate}
+  \item The work is going to be useful in pointing you in the right direction
+  \begin{enumerate}
+    \item Author works a lot in a particular idea $\rightarrow$ they have a good sense of prior work and identify resources
+  \end{enumerate}
+  \item Get ideas for reading papers
+  \item Good models for writing
+  \item Burrow ideas / methodologies
+\end{enumerate}
+\subsubsection*{How to read papers}
+\begin{enumerate}
+  \item Make sure to read the abstract! You can get everything you need from the abstract (most of the time)
+  \begin{enumerate}
+    \item Sometimes papers are wrongly cited because their title was relevant even though they had nothing to do with their citation.
+  \end{enumerate}
+\end{enumerate}
+Know the difference between a defect, a fault, and a failure. I guess in general,
+SWE terms.
+$\\$
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Concslusion}
+\lipsum[13]
+
+\newpage
+
+% \printbibliography
+
+\end{document}
+

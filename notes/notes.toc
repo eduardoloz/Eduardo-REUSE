@@ -1,0 +1,27 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{Introduction}{2}{section*.2}%
+\contentsline {section}{\numberline {1}Week 1: Introduction to Project}{2}{section.1}%
+\contentsline {section}{\numberline {2}Week 2: Literature Review}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Day 1 - Learning decomp basics}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Day 2 - Algorithm and Logic for State Graph Traversal}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Day 3 - Do comp-verify by hand for ToyMutex}{3}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Day 4 - CRA experimentation}{3}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Day 5 - Coding}{4}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Week 3: Initial Coding}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Day 1 - Eduardo House Keeping}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Day 2 - Learning decomp basics}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Day 3 - Meeting Eunsuk!}{6}{subsection.3.3}%
+\contentsline {paragraph}{short}{6}{section*.19}%
+\contentsline {paragraph}{short}{6}{section*.20}%
+\contentsline {paragraph}{short}{6}{section*.21}%
+\contentsline {section}{\numberline {4}Week 4: Advanced Coding Techniques}{6}{section.4}%
+\contentsline {section}{\numberline {5}Week 5: Data Analysis}{7}{section.5}%
+\contentsline {section}{\numberline {6}Week 6: Mid-Internship Review}{7}{section.6}%
+\contentsline {section}{\numberline {7}Week 7: Continued Research}{7}{section.7}%
+\contentsline {section}{\numberline {8}Week 8: Preparing Results}{7}{section.8}%
+\contentsline {section}{\numberline {9}Week 9: Discussion}{7}{section.9}%
+\contentsline {section}{\numberline {10}Week 10: }{7}{section.10}%
+\contentsline {section}{\numberline {11}REUSE seminars with Dr. Sunshine!}{7}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Week 1}{7}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Week 2 - Reading Research papers}{7}{subsection.11.2}%
+\contentsline {section}{Concslusion}{7}{section*.24}%
