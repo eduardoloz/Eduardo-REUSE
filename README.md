@@ -1,5 +1,3 @@
-# Eduardo-REUSE
-=======
 # EDUARDO'S SUMMER PROGRESS
 
 ### Introduction
