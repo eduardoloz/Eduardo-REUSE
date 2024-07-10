@@ -1,48 +1,42 @@
 
 import java.util.ArrayList;
 
-public class RecompositionMap implements Runnable{
+public class RecompositionMap implements Runnable {
 
-    public static boolean globalIsDone = false;
+    public static String printMsg = null;
 
     @ Override
     public void run() {
-        int x = (int) (Math.random() * 2000) + 1;
         try {
-          Thread.sleep(x);  
+            veryFunctionalCode();
         } catch (InterruptedException e) {
             System.out.println("Thread interrupted by another thread");
             e.printStackTrace();
         }
-        if (isThreadDone()){
-            System.out.println("Program executed within: " + x + " ms.");
-        }
     }
 
-    synchronized public boolean isThreadDone() {
-        boolean isDone = globalIsDone;
-        globalIsDone = true;
-        return isDone;
+    synchronized static public String isThreadDone(String msg) {
+        if (printMsg == null){
+            printMsg = new String(msg);
+        }
+        return printMsg;
+    }
+
+    public static void veryFunctionalCode() throws InterruptedException{
+        int x = (int) (Math.random() * 1500) + 1;
+        Thread.sleep(x);
+        int[] patterns = {1,2,3,4};
+        int randomPattern = patterns[(int) (Math.random() * patterns.length)];
+        isThreadDone("" + randomPattern);
+    }
+
+    public static void printOutput(){
+        System.out.println(printMsg);
     }
     
     public static void main(String[] args) {
-        /**
-         * Allocates a new Thread object. This constructor has the same effect 
-         * as Thread (null, target, gname), where gname is a newly generated name. 
-         * Automatically generated names are of the form "Thread-"+n, where n is an integer.
-         */
-        int n = 1;
-        try {
-            n = Integer.parseInt(args[0]);    
-        } catch (NumberFormatException e) {
-            System.out.println("String cannot be parsed to an integer");
-        }
-        /**
-         * Notes
-         * - Maybe create futures? (don't have a race condition)
-         * - Look into alternatives for the for loop
-         */
-        // Thread thread = new Thread(recompMap);
+        int n = 5;
+        
         ArrayList<Thread> threads = new ArrayList<>();
         for(int i = 0; i < n; i++){
             // Add the current thread to the collection
@@ -60,6 +54,6 @@ public class RecompositionMap implements Runnable{
                 //e.printStackTrace();
             }
         }
-        System.out.println("All threads have finished");
+        printOutput();
     }
 }
