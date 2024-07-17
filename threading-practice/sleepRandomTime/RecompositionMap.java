@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class RecompositionMap implements Runnable {
 
-    public static String printMsg = null;
+    public static String globalPrintMsg = null;
 
     @ Override
     public void run() {
@@ -11,15 +11,14 @@ public class RecompositionMap implements Runnable {
             veryFunctionalCode();
         } catch (InterruptedException e) {
             System.out.println("Thread interrupted by another thread");
-            e.printStackTrace();
         }
     }
 
-    synchronized static public String isThreadDone(String msg) {
-        if (printMsg == null){
-            printMsg = new String(msg);
+    synchronized public static String isThreadDone(String msg) {
+        if (globalPrintMsg == null){
+            globalPrintMsg = msg;
         }
-        return printMsg;
+        return globalPrintMsg;
     }
 
     public static void veryFunctionalCode() throws InterruptedException{
@@ -27,33 +26,56 @@ public class RecompositionMap implements Runnable {
         Thread.sleep(x);
         int[] patterns = {1,2,3,4};
         int randomPattern = patterns[(int) (Math.random() * patterns.length)];
-        isThreadDone("" + randomPattern);
+        isThreadDone("" + "The message is " + randomPattern);
     }
 
     public static void printOutput(){
-        System.out.println(printMsg);
+        System.out.println(globalPrintMsg);
     }
-    
-    public static void main(String[] args) {
-        int n = 5;
-        
-        ArrayList<Thread> threads = new ArrayList<>();
-        for(int i = 0; i < n; i++){
-            // Add the current thread to the collection
-            RecompositionMap recompMap = new RecompositionMap();
-            // Create a new thread and pass the instance of RecompositionMap to it
-            Thread thread = new Thread(recompMap);
-            thread.start();
-            threads.add(thread);
+
+    public static ArrayList<RecompositionMap> createStrategies(int number) throws InterruptedException {
+        ArrayList<RecompositionMap> strategies = new ArrayList<>();
+        for(int i = 0; i < number; i++){
+            RecompositionMap sampleStrategy = new RecompositionMap();
+            strategies.add(sampleStrategy);
         }
-        // Wait for all threads to finish
-        for (Thread t : threads) {
-            try {
-                t.join();
-            } catch (InterruptedException e) {
-                //e.printStackTrace();
+        return strategies;
+    }
+
+    //  Interrupt other threads as killing and stopping is now deprectaed in Java
+    synchronized static public void interruptOtherThreads (ArrayList<Thread> threadList){
+        for (Thread thread : threadList){
+            if (!Thread.currentThread().equals(thread)){
+                thread.interrupt();
             }
         }
+    }
+    /**
+     * Potential Problems:
+     * 1. How to deal with InterruptedExceptions?
+     */
+    
+    public static void main(String[] args) {
+        int n = 10;
+
+		// Create strategies
+        ArrayList<RecompositionMap> strategies = null;
+
+        try {
+            strategies = createStrategies(n);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+		// If strategies is not null create the strategies
+        if (strategies != null) {
+			for (RecompositionMap strategy : strategies) {
+				strategy.run();
+			}
+		}
+
         printOutput();
     }
 }
+
+
